@@ -6,7 +6,7 @@ require 'boring'
 video_path = File.expand_path "~"
 Boring.init(video_path)
 
-Boring.videos.each do |video|
+Boring.videos.shuffle.each do |video|
   video.play
   puts "some text!\n"
   sleep 5
