@@ -19,7 +19,8 @@ module Boring
 
       next unless output =~ /^video/
 
-      @videos << Boring::Video.new(path)
+      puts "Loading Video: #{path}"
+      self.videos << Boring::Video.new(path)
     end
   end
 end
