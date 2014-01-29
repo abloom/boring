@@ -1,11 +1,13 @@
 #!/usr/bin/env ruby
 
+$:.unshift File.expand_path File.join File.dirname(__FILE__), "..", "lib"
 require 'boring'
 
-video_path = File.expand_path File.join File.dirname(__FILE__), ".."
+video_path = File.expand_path "~"
 Boring.init(video_path)
 
 Boring.videos.each do |video|
   video.play
   puts "some text!\n"
+  sleep 5
 end
