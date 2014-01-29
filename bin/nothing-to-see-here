@@ -1,0 +1,11 @@
+#!/usr/bin/env ruby
+
+require 'boring'
+
+video_path = File.expand_path File.join File.dirname(__FILE__), ".."
+Boring.init(video_path)
+
+Boring.videos.each do |video|
+  video.play
+  puts "some text!\n"
+end

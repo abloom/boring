@@ -1,29 +1,11 @@
-# Boring
+# remove the raspberry pi logo
+sudo echo " logo.nologo" >> /boot/cmdline.txt
 
-TODO: Write a gem description
+# add the boring user
+sudo useradd -m boring
 
-## Installation
+# setup /dev/vchiq permissions for the boring user as root
+echo 'SUBSYSTEM=="vchiq",GROUP="video",MODE="0660"' > /etc/udev/rules.d/10-vchiq-permissions.rules
+usermod -a -G video boring
 
-Add this line to your application's Gemfile:
-
-    gem 'boring'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install boring
-
-## Usage
-
-TODO: Write usage instructions here
-
-## Contributing
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+# clone the repo

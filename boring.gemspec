@@ -8,10 +8,12 @@ Gem::Specification.new do |spec|
   spec.version       = Boring::VERSION
   spec.authors       = ["Andrew Bloom"]
   spec.email         = ["andrew@andrewkbloom.com"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
+  spec.description   = %q{Video Player for the Boring Store}
+  spec.summary       = %q{Raspberry Pi GPIO controller video player.}
   spec.homepage      = ""
   spec.license       = "MIT"
+  spec.bindir        = 'bin'
+  spec.executables << 'nothing-to-see-here'
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
