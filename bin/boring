@@ -6,8 +6,16 @@ require 'boring'
 video_path = File.expand_path "~"
 Boring.init(video_path)
 
-Boring.videos.shuffle.each do |video|
-  video.play
-  puts "some text!\n"
-  sleep 5
+while true
+  Boring.videos.shuffle.each do |video|
+    video.play
+    idx = Boring.videos.index video
+
+    dialogue = Boring.dialogues.shuffle.first
+    dialogue.render
+
+    sleep 10
+  end
+
+  sleep 20
 end
