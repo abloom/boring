@@ -1,4 +1,4 @@
-class Boring::Video < Struct.new(:path, :logger)
+class Boring::Video < Struct.new(:path)
   def play
     msg = Paint["Playing Video:", :green]
     Boring.logger.info "#{msg} #{self.path}"

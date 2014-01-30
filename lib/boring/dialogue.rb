@@ -1,4 +1,8 @@
-class Boring::Dialogue < Struct.new(:message, :logger)
+class Boring::Dialogue < Struct.new(:path)
+  def message
+    @_message ||= File.read(self.path)
+  end
+
   def render
     #system "clear"
 
