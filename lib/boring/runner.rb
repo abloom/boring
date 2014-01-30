@@ -10,12 +10,14 @@ class Boring::Runner
       Boring.logger.info "#{msg} #{dialogue}"
       Boring::Dialogue.new dialogue
     end
+    raise "dialogues not found" if @dialogues.empty?
 
     @videos = videos.map do |video|
       msg = Paint["Loading Video:", :red]
       Boring.logger.info "#{msg} #{video}"
       Boring::Video.new video
     end
+    raise "videos not found" if @videos.empty?
   end
 
   def play_random_video
