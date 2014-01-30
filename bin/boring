@@ -15,23 +15,22 @@ end
 raise "video path must be specified" unless opts.video?
 raise "dialogue path must be specified" unless opts.dialogue?
 
-dialogue_path = File.expand_path opts[:dialogue]
-dialogues = Boring.find_dialogues dialogue_path
-
-video_path = File.expand_path opts[:video]
-videos = Boring.find_videos video_path
-
+dialogues = Boring.find_dialogues File.expand_path opts[:dialogue]
+videos = Boring.find_videos File.expand_path opts[:video]
 runner = Boring::Runner.new(videos, dialogues)
 
-commands = [:video, :dialogue]
+commands = [:video, :dialogue, :dialogue, :sleep]
 
 while true
   case commands.shuffle.first
   when :video
     runner.play_random_video
+    sleep 5
   when :dialogue
     runner.say_random_dialogue
+    sleep 5
+  when :sleep
+    system "clear"
+    sleep 10
   end
-
-  sleep 5
 end
