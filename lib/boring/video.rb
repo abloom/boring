@@ -1,9 +1,9 @@
-class Boring::Video < Struct.new(:path)
+class Boring::Video < Struct.new(:path, :logger)
   def play
-    puts "Playing Video: #{self.path}"
-    cmd = "/usr/bin/omxplayer #{self.path}"
-    output = `#{cmd}`
+    msg = Paint["Playing Video:", :green]
+    Boring.logger.info "#{msg} #{self.path}"
 
+    output = `/usr/bin/omxplayer #{self.path}`
     $?.to_i == 0
   end
 end

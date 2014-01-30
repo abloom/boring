@@ -1,21 +1,23 @@
 #!/usr/bin/env ruby
 
 $:.unshift File.expand_path File.join File.dirname(__FILE__), "..", "lib"
-require 'boring'
 
-video_path = File.expand_path "~"
-Boring.init(video_path)
+require 'boring'
+require 'boring/runner'
+
+dialogues = Boring.find_dialogues File.expand_path "~"
+videos = Boring.find_videos File.expand_path "~"
+runner = Boring::Runner.new(videos, dialogues)
+
+commands = [:video, :dialogue]
 
 while true
-  Boring.videos.shuffle.each do |video|
-    video.play
-    idx = Boring.videos.index video
-
-    dialogue = Boring.dialogues.shuffle.first
-    dialogue.render
-
-    sleep 10
+  case commands.shuffle.first
+  when :video
+    runner.play_random_video
+  when :dialogue
+    runner.say_random_dialogue
   end
 
-  sleep 20
+  sleep 5
 end

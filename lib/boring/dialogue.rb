@@ -1,12 +1,16 @@
-class Boring::Dialogue < Struct.new(:message)
+class Boring::Dialogue < Struct.new(:message, :logger)
   def render
-    system "clear"
+    #system "clear"
+
     lines = self.message.scan(/.{1,76}/)
-    puts "\n--- #{lines.first}"
+    msg = Paint[lines.first, :yellow]
+    Boring.logger.info "\n--- #{msg}"
 
     lines[1..-1].each do |line|
-      puts "    #{line}"
+      msg = Paint[line, :yellow]
+      Boring.logger.info "    #{msg}"
     end
-    puts
+
+    Boring.logger.info ""
   end
 end
