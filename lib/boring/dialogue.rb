@@ -7,7 +7,7 @@ class Boring::Dialogue < Struct.new(:message, :logger)
     Boring.logger.info "\n--- #{msg}"
 
     lines[1..-1].each do |line|
-      msg = Paint[line, :yellow]
+      msg = Paint[line.strip, :yellow]
       Boring.logger.info "    #{msg}"
     end
 
