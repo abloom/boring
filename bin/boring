@@ -6,7 +6,7 @@ require 'slop'
 require 'boring'
 require 'boring/runner'
 
-opts = Slop.parse(:help => true, :strict => true) do
+opts = Slop.parse(help: true, strict: true) do
   banner 'Usage: boring [options]'
   on :v, :video=, "video path"
   on :d, :dialogue=, "dialogue path"
@@ -19,18 +19,26 @@ dialogues = Boring.find_dialogues File.expand_path opts[:dialogue]
 videos = Boring.find_videos File.expand_path opts[:video]
 runner = Boring::Runner.new(videos, dialogues)
 
-commands = [:video, :dialogue, :dialogue, :sleep]
+Boring::Pi.new.motion_sensor 12 do |pin|
+  Boring.logger.info "motion detected"
+  Boring.logger.info pin.inspect
 
-while true
-  case commands.shuffle.first
-  when :video
-    runner.play_random_video
-    sleep 5
-  when :dialogue
-    runner.say_random_dialogue
-    sleep 5
-  when :sleep
-    system "clear"
-    sleep 10
-  end
+  runner.play_random_video
+end
+
+#commands = [:video, :dialogue, :dialogue, :sleep]
+
+loop do
+  sleep 1
+  #case commands.sample
+  #when :video
+    #runner.play_random_video
+    #sleep 5
+  #when :dialogue
+    #runner.say_random_dialogue
+    #sleep 5
+  #when :sleep
+    #system "clear"
+    #sleep 10
+  #end
 end

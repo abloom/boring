@@ -6,6 +6,9 @@ require "logger"
 require "paint"
 
 module Boring
+  module Actions; end
+  module Triggers; end
+
   extend self
 
   attr_reader :logger

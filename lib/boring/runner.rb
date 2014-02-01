@@ -1,5 +1,7 @@
-require 'boring/dialogue'
-require 'boring/video'
+require 'boring/actions/dialogue'
+require 'boring/actions/video'
+
+require 'boring/pi'
 
 class Boring::Runner
   attr_reader :videos, :dialogues
@@ -18,6 +20,8 @@ class Boring::Runner
       Boring::Video.new video
     end
     raise "videos not found" if @videos.empty?
+
+    @pi = Boring::Pi.new
   end
 
   def play_random_video
