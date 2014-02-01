@@ -20,7 +20,8 @@ dialogues = Boring.find_dialogues File.expand_path opts[:dialogue]
 videos = Boring.find_videos File.expand_path opts[:video]
 runner = Boring::Runner.new(videos, dialogues)
 
-Boring::Pi.new.motion_sensor 12 do |pin|
+#Boring::Pi.new.motion_sensor 12 do |pin|
+PiPiper.watch pin: pin, direction: :in, pull: :up do |pin|
   Boring.logger.info "motion detected"
   Boring.logger.info pin.inspect
 
