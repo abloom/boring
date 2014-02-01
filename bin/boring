@@ -5,6 +5,7 @@ $:.unshift File.expand_path File.join File.dirname(__FILE__), "..", "lib"
 require 'slop'
 require 'boring'
 require 'boring/runner'
+require 'boring/pi'
 
 opts = Slop.parse(help: true, strict: true) do
   banner 'Usage: boring [options]'

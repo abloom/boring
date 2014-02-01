@@ -1,8 +1,6 @@
 require 'boring/actions/dialogue'
 require 'boring/actions/video'
 
-require 'boring/pi'
-
 class Boring::Runner
   attr_reader :videos, :dialogues
 
@@ -10,14 +8,14 @@ class Boring::Runner
     @dialogues = dialogues.map do |dialogue|
       msg = Paint["Loading Dialogue:", :red]
       Boring.logger.info "#{msg} #{dialogue}"
-      Boring::Dialogue.new dialogue
+      Boring::Actions::Dialogue.new dialogue
     end
     raise "dialogues not found" if @dialogues.empty?
 
     @videos = videos.map do |video|
       msg = Paint["Loading Video:", :red]
       Boring.logger.info "#{msg} #{video}"
-      Boring::Video.new video
+      Boring::Actions::Video.new video
     end
     raise "videos not found" if @videos.empty?
 

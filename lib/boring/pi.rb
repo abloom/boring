@@ -1,6 +1,6 @@
 require 'pi_piper'
 
-PiPiper::Platform.driver = PiPiper::StudDriver.new
+#PiPiper::Platform.driver = PiPiper::StudDriver.new
 
 class Boring::Pi
   def motion_sensor(pin, &block)
