@@ -4,6 +4,6 @@ require 'pi_piper'
 
 class Boring::Pi
   def motion_sensor(pin, &block)
-    PiPiper.watch pin: pin, &block
+    PiPiper.watch pin: pin, direction: :in, pull: :up, &block
   end
 end
